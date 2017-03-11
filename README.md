@@ -61,7 +61,96 @@ CATransitionDemo
 
 
 
-2.用UIView的block回调实现动画的代码封装　
+#### 2.用UIView的block回调实现动画的代码封装　
+
+```Objective-C
+#pragma UIView实现动画
+- (void) animationWithView : (UIView *)view WithAnimationTransition : (UIViewAnimationTransition) transition
+{
+    [UIView animateWithDuration:DURATION animations:^{
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView setAnimationTransition:transition forView:view cache:YES];
+    }];
+}
+```
+
+#### 3.改变View的背景图，便于切换时观察
+```Objective-C
+#pragma 给View添加背景图
+-(void)addBgImageWithImageName:(NSString *) imageName
+{
+     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:imageName]];
+}
+```
+
+## 二.调用上面的方法实现我们想要的动画
+
+#### 1.我们在View上添加多个Button,给不同的Button设置不同的Tag值，然后再ViewController中绑定同一个方法，点击不同的button实现不同的页面切换效果。storyBoard上的控件效果如下图所示：
+![](http://images.cnitblog.com/blog/545446/201412/121710078375833.png)
+
+#### 2.下面我们就开始编写点击button要回调的方法
+
+(1).定义枚举来标示按钮所对应的动画类型，代码如下：
+```Objective-C
+typedef enum : NSUInteger {
+    Fade = 1,                   //淡入淡出
+    Push,                       //推挤
+    Reveal,                     //揭开
+    MoveIn,                     //覆盖
+    Cube,                       //立方体
+    SuckEffect,                 //吮吸
+    OglFlip,                    //翻转
+    RippleEffect,               //波纹
+    PageCurl,                   //翻页
+    PageUnCurl,                 //反翻页
+    CameraIrisHollowOpen,       //开镜头
+    CameraIrisHollowClose,      //关镜头
+    CurlDown,                   //下翻页
+    CurlUp,                     //上翻页
+    FlipFromLeft,               //左翻转
+    FlipFromRight,              //右翻转
+    
+} AnimationType;
+```
+(2),获取Button的Tag值：
+```Objective-C
+     UIButton *button = sender;
+     AnimationType animationType = button.tag;
+```
+ 
+
+(3).每次点击button都改变subtype的值，包括上,左,下,右
+```Objective-C
+NSString *subtypeString;
+    
+    switch (_subtype) {
+        case 0:
+            subtypeString = kCATransitionFromLeft;
+            break;
+        case 1:
+            subtypeString = kCATransitionFromBottom;
+            break;
+        case 2:
+            subtypeString = kCATransitionFromRight;
+            break;
+        case 3:
+            subtypeString = kCATransitionFromTop;
+            break;
+        default:
+            break;
+    }
+    _subtype += 1;
+    if (_subtype > 3) {
+        _subtype = 0;
+    }
+```
+(4),通过switch结合上边的枚举来判断是那个按钮点击的
+```Objective-C
+ switch (animationType)
+{
+     //各种Case,此处代码下面会给出  
+}
+```
 
 ```Objective-C
 ```
