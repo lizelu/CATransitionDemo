@@ -151,34 +151,44 @@ NSString *subtypeString;
      //各种Case,此处代码下面会给出  
 }
 ```
+#### 3.调用我们封装的运动方法，来实现动画效果
 
+(1),淡化效果
 ```Objective-C
+ case Fade:
+     [self transitionWithType:kCATransitionFade WithSubtype:subtypeString ForView:self.view];
+     break;
 ```
+
+(2) PUSH效果
 ```Objective-C
+ case Push:
+     [self transitionWithType:kCATransitionPush WithSubtype:subtypeString ForView:self.view];
+     break;
 ```
-###PUSH效果
 ![](http://images.cnitblog.com/blog/545446/201412/121723047906597.png)
 
-###揭开效果
+(3)、揭开效果
+
 ![](http://images.cnitblog.com/blog/545446/201412/121728297283768.png)
 
-###覆盖效果
+(4)、覆盖效果
 ![](http://images.cnitblog.com/blog/545446/201412/121730580565348.png)
 
-###立方体切换
+(5)、立方体切换
 ![](http://images.cnitblog.com/blog/545446/201412/121732513841605.png)
 
-###吮吸效果
+(6)、吮吸效果
 ![](http://images.cnitblog.com/blog/545446/201412/121734290719149.png)
 
-###翻转效果
+(7)、翻转效果
 ![](http://images.cnitblog.com/blog/545446/201412/121742192432356.png)
 
-###波纹效果
+(8)、波纹效果
 ![](http://images.cnitblog.com/blog/545446/201412/121741041184172.png)
 
-###翻页效果
+(9)、翻页效果
 ![](http://images.cnitblog.com/blog/545446/201412/121745555255331.png)
 
-###相机打开效果
+(10)、相机打开效果
 ![](http://images.cnitblog.com/blog/545446/201412/121748313686675.png)
