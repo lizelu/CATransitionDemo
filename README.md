@@ -169,33 +169,92 @@ NSString *subtypeString;
 ![](http://images.cnitblog.com/blog/545446/201412/121723047906597.png)
 
 (3)、揭开效果
-
+```Objective-C
+ case Reveal:
+     [self transitionWithType:kCATransitionReveal WithSubtype:subtypeString ForView:self.view];
+     break;
+```
 ![](http://images.cnitblog.com/blog/545446/201412/121728297283768.png)
 
 (4)、覆盖效果
-
+```Objective-C
+case MoveIn:
+    [self transitionWithType:kCATransitionMoveIn WithSubtype:subtypeString ForView:self.view];
+    break;
+```
 ![](http://images.cnitblog.com/blog/545446/201412/121730580565348.png)
 
 (5)、立方体切换
-
+```Objective-C
+case Cube:
+    [self transitionWithType:@"cube" WithSubtype:subtypeString ForView:self.view];
+    break;
+```
 ![](http://images.cnitblog.com/blog/545446/201412/121732513841605.png)
 
 (6)、吮吸效果
-
+```Objective-C
+case SuckEffect:
+    [self transitionWithType:@"suckEffect" WithSubtype:subtypeString ForView:self.view];
+    break;
+```
 ![](http://images.cnitblog.com/blog/545446/201412/121734290719149.png)
 
 (7)、翻转效果
-
+```Objective-C
+case OglFlip:
+    [self transitionWithType:@"oglFlip" WithSubtype:subtypeString ForView:self.view];
+    break;
+```
 ![](http://images.cnitblog.com/blog/545446/201412/121742192432356.png)
 
 (8)、波纹效果
-
+```Objective-C
+case RippleEffect:
+    [self transitionWithType:@"rippleEffect" WithSubtype:subtypeString ForView:self.view];
+    break;
+```
 ![](http://images.cnitblog.com/blog/545446/201412/121741041184172.png)
 
 (9)、翻页效果
+```Objective-C
+case PageCurl:
+    [self transitionWithType:@"pageCurl" WithSubtype:subtypeString ForView:self.view];
+    break;
 
+case PageUnCurl:
+    [self transitionWithType:@"pageUnCurl" WithSubtype:subtypeString ForView:self.view];
+    break;
+```
 ![](http://images.cnitblog.com/blog/545446/201412/121745555255331.png)
 
 (10)、相机打开效果
+```Objective-C
+case CameraIrisHollowOpen:
+    [self transitionWithType:@"cameraIrisHollowOpen" WithSubtype:subtypeString ForView:self.view];
+    break;
 
+case CameraIrisHollowClose:
+    [self transitionWithType:@"cameraIrisHollowClose" WithSubtype:subtypeString ForView:self.view];
+    break;
+```
 ![](http://images.cnitblog.com/blog/545446/201412/121748313686675.png)
+
+(11),调用上面封装的第二个动画方法
+```Objective-C
+case CurlDown:
+    [self animationWithView:self.view WithAnimationTransition:UIViewAnimationTransitionCurlDown];
+    break;
+
+case CurlUp:
+    [self animationWithView:self.view WithAnimationTransition:UIViewAnimationTransitionCurlUp];
+    break;
+
+case FlipFromLeft:
+    [self animationWithView:self.view WithAnimationTransition:UIViewAnimationTransitionFlipFromLeft];
+    break;
+
+case FlipFromRight:
+    [self animationWithView:self.view WithAnimationTransition:UIViewAnimationTransitionFlipFromRight];
+    break;
+```
