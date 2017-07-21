@@ -1,13 +1,42 @@
 CATransitionDemo
 ================
+注：其中有些效果调用了CATransition的Private API, 仅供娱乐。
 
-##iOS开发常用页面切换效果
-因工作原因，有段时间没发表博客了，今天就发表篇博客给大家带来一些干货，切勿错过哦。今天所介绍的主题是关于动画的，在之前的博客中也有用到动画的地方，今天就好好的总结一下iOS开发中常用的动画。说道动画其中有一个是仿射变换的概念，至于怎么仿射的怎么变换的，原理如何等在本篇博客中不做赘述。今天要分享的是如和用动画做出我们要做的效果。
+补充：还是有好多小伙伴问那些可以在AppStore中使用，调用私有API的肯定是不行的，而下方有些就调用了私有API。
+
+下方会用到一些私有API, 有些效果在APPStore中是不能使用的，私有API如下：
+```Objective-C
+NSString *const kCATransitionCube = @"cube";  
+NSString *const kCATransitionSuckEffect = @"suckEffect"; 
+NSString *const kCATransitionOglFlip = @"oglFlip";  
+NSString *const kCATransitionRippleEffect = @"rippleEffect";  
+NSString *const kCATransitionPageCurl = @"pageCurl"; 
+NSString *const kCATransitionPageUnCurl = @"pageUnCurl";   
+NSString *const kCATransitionCameraIrisHollowOpen = @"cameraIrisHollowOpen";
+NSString *const kCATransitionCameraIrisHollowClose = @"cameraIrisHollowClose";
+```
+
+而下方这些可以放心使用：
+```Objective-C
+// CAAnimation.h
+
+/* Common transition types. */
+
+CA_EXTERN NSString * const kCATransitionFade
+    __OSX_AVAILABLE_STARTING (__MAC_10_5, __IPHONE_2_0);
+CA_EXTERN NSString * const kCATransitionMoveIn
+    __OSX_AVAILABLE_STARTING (__MAC_10_5, __IPHONE_2_0);
+CA_EXTERN NSString * const kCATransitionPush
+    __OSX_AVAILABLE_STARTING (__MAC_10_5, __IPHONE_2_0);
+CA_EXTERN NSString * const kCATransitionReveal
+    __OSX_AVAILABLE_STARTING (__MAC_10_5, __IPHONE_2_0);
+ ```
+
 
 今天主要用到的动画类是CALayer下的CATransition至于各种动画类中如何继承的在这也不做赘述，网上的资料是一抓一大把。好废话少说切入今天的正题。
-###一.封装动画方法
+### 一.封装动画方法
 
-####1.用CATransition实现动画的封装方法如下，每句代码是何意思，请看注释之。
+#### 1.用CATransition实现动画的封装方法如下，每句代码是何意思，请看注释之。
 ```Objective-C
 #pragma CATransition动画实现
 - (void) transitionWithType:(NSString *) type WithSubtype:(NSString *) subtype ForView : (UIView *) view
